@@ -1,0 +1,17 @@
+{
+  "name": "imgin",
+  "version": "1.0.0",
+  "description": "image hosting app",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "jonathan.casey",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0",
+    "mongodb": "^2.2.11",
+    "multer": "1.1.0",
+    "nodemon": "^1.11.0"
+  }
+}

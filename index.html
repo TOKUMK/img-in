@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <script src="js/blueimp-gallery.min.js" async></script>
+        <script src="js/bootstrap.min.js" async></script>
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js" async></script>
+        <script src="js/script.js" async></script>
+        <link rel="stylesheet" href="css/blueimp-gallery.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+    </head>
+    
+    <body>
+        
+        
+        <div id="main">
+            <div class="navbar-wrapper" style="border: 12px solid black;">
+                <ul>
+                    <li><a href="#">Login</a></li>
+                    <li><a href="#">Sign up</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <form 
+                        id              =  "uploadForm"
+                        enctype         =  "multipart/form-data"
+                        action          =  "/api/photo"
+                        method          =  "post">
+                    
+                    <input type="file" name="userPhoto" />
+                    <input type="submit" value="Upload Image" name="submit">
+                    
+                    <label>travel</label>
+                    <input type="text" value="txtval"      name="textval">
+                    
+                    <label>travel</label>
+                    <input type="radio" value="travel"      name="cat">
+                    <label>food</label>
+                    <input type="radio" value="food"        name="cat">
+                    <label>community</label>
+                    <input type="radio" value="community"   name="cat">
+                </form>
+            </div>
+            
+            
+            <br>
+            <br>
+            <br>
+            <br>
+            <!--
+            <div id="content" style="border: 12px solid black;">
+                <p class="centerme">image gallery  to go here.</p>
+                <img src="img/aliveexpression1.png"/>
+            </div> -->
+        </div>
+        
+
+        <div id="filter">
+            <p>filter by content here.</p>
+            
+        </div>
+        
+        
+        <div id="content">
+            <p>Image content to go here.</p>
+            <br><br><br>
+            <p>https://slashdot.org/story/08/06/25/148203/how-facebook-stores-billions-of-photos</p>
+            
+        </div>
+        
+    </body>
+</html>
+
+
+
+
+<!--
+    The problem with this approach is that the image names are hardcoded to the html.
+    
+    The present solution should handle dynamic addition of images - eg: if new content is added to the
+    /img directory, the javescript should be able to handle this appropriately.
+-->

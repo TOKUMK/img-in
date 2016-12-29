@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <script src="js/blueimp-gallery.min.js" async></script>
+        <script src="js/bootstrap.min.js" async></script>
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js" async></script>
+        <script src="js/script.js" async></script>
+        <link rel="stylesheet" href="css/blueimp-gallery.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+    </head>
+    
+    <body>
+        <div id="main">
+            <div class="navigation" style="border: 12px solid black;">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a class="active" href="reich.html">About Wilhelm Reich</a></li>
+                    <li><a href="orgone.html">About Orgone</a></li>
+                    <li><a href="links.html">Links | Further Reading</a></li>
+                </ul>
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <!--
+            <div id="content" style="border: 12px solid black;">
+                <p class="centerme">image gallery  to go here.</p>
+                <img src="img/aliveexpression1.png"/>
+            </div> -->
+        </div>
+        
+        <div id="image">
+            <img src="img/wilhelm.jpg" style="display:block; margin:auto;"/>
+        </div>
+        <div id="content" style="text-align: center;">
+           <p style="text-align: center;"> wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum  wilhelm ipsum </p>
+        </div>
+        
+        
+    </body>
+</html>
+
+
+
+
+<!--
+    The problem with this approach is that the image names are hardcoded to the html.
+    
+    The present solution should handle dynamic addition of images - eg: if new content is added to the
+    /img directory, the javescript should be able to handle this appropriately.
+-->
