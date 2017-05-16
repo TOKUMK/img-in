@@ -1,6 +1,4 @@
 var express     = require('express'),
-    bodyParser  = require('body-parser'),
-    multer      = require('multer'),
     MongoClient = require('mongodb').MongoClient,
     assert      = require('assert'),
     util        = require('util'),
@@ -11,7 +9,7 @@ var app = express();
 //app.use(formidable.parse());
 
 // Handle use case for file uploading.
-// TODO: Persist file data.
+// TODO: Persist file meta-data.
 app.post("/upload", function (req, res) {
     //console.log(req.body.user.name)
 
