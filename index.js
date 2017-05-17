@@ -6,6 +6,8 @@ var express     = require('express'),
 
 var app = express();
 
+app.use('/img', express.static(__dirname + '/img'));
+
 //app.use(formidable.parse());
 
 // Handle use case for file uploading.
@@ -42,7 +44,51 @@ app.post("/upload", function (req, res) {
 
 
 app.get('/',function(req,res){
-      res.sendFile(__dirname + "/index.html");
+      res.sendFile(__dirname + "/home.html");
+});
+
+app.get('/login',function(req,res){
+      res.sendFile(__dirname + "/login.html");
+});
+
+app.post('/login',function(req,res){
+
+    var form = new formidable.IncomingForm();
+    var username, password;
+
+    // form.parse(req,);
+
+    form.parse(req, function (req,fields, err){
+        username = fields.username;
+        password = fields.password;
+        console.log("cattype = " + fields.username); 
+        console.log("filename = " + fields.password); 
+    });
+      res.end("logged in");
+});
+
+app.get('/register',function(req,res){
+      res.sendFile(__dirname + "/register.html");
+});
+
+app.post('/register',function(req,res){
+
+    var form = new formidable.IncomingForm();
+    var username, email, password;
+
+   // form.parse(req,);
+
+    form.parse(req, function (req,fields, err){
+        username    = fields.username;
+        email       = fields.email;
+        password    = fields.password;
+
+        console.log("cattype = " + fields.username); 
+        console.log("filename = " + fields.email);
+        console.log("filename = " + fields.password); 
+    });
+
+    res.end("user registered");
 });
 
 app.get('/hello',function(req,res){
