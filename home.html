@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div style="background-color:#aed6f1 " id="container">
+
+            <!-- navigation bar -->
+            <nav style="background-color:#aed6f1 " class = "navbar navbar-default" role = "navigation">
+   
+               <div class = "navbar-header">
+                  <a class = "navbar-brand" href = "/">Imgin</a>
+               </div>
+   
+               <div>
+                  <ul class = "nav navbar-nav">
+                     <li class = "active"><a href = "#">Upload</a></li>
+                     <li><a href = "/login">Login</a></li>
+                     <li><a href = "/register">Signup</a></li>
+                  </ul>
+                  <form class="form-inline my-2 my-lg-0">
+                      <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                  </form>
+               </div>
+            </nav>
+            <!--center content-->
+            <div id="main" style="background-color: #aed6f1">
+                <form  
+                    id              =  "uploadForm"
+                    enctype         =  "multipart/form-data"
+                    action          =  "/upload"
+                    method          =  "post">
+                       <!-- <input type="image" id="upload" src="img/san.gif" class="center-block"></input> -->
+
+
+                        <label class="center-block" for="file-input">
+                             <img  class="center-block" src="img/san.gif"/>
+                        </label>
+
+                        <input style="display: none;" id="file-input" type="file"/>
+
+                        <div class="center-block" id="upload-information" >
+                            <input class="center-block" type="submit" value="Upload Image" name="submit">
+                        
+                            <label>filename</label>
+                            <input type="text" placeholder="input filename here" name="filename">
+                        
+                            <label>travel</label>
+                            <input type="radio" value="travel" name="cat">
+                            <label>food</label>
+                            <input type="radio" value="food" name="cat">
+                            <label>community</label>
+                            <input type="radio" value="community" name="cat">
+                        </div>
+                </form>
+            </div>
+
+        </div>
+
+
+    </body>
+</html>
+
+
+
