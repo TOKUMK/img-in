@@ -5,6 +5,7 @@ var express     = require('express'),
     formidable  = require('formidable');
     mongoose    = require('mongoose');
     User        = require('./User.model');
+    Image       = require('./Image.model');
 
 var app = express();
 
@@ -19,7 +20,12 @@ var listener = app.listen(3000, function(){
 
 });
 
+
+
+
 // -------------------- routes start here -----------------------------
+
+
 
 
 
@@ -109,6 +115,29 @@ app.get('/users', function(req,res){
 
 
 
+/*
+
+        Routes for returning all image (image gallery)
+
+*/
+
+
+
+app.get('/gallery', function(req,res){
+
+});
+
+
+
+
+
+
+
+/*
+
+        Route handling image upload and meta-data persistence.
+    
+*/
 
 
 
@@ -124,6 +153,10 @@ app.post("/upload", function (req, res) {
 
     var form = new formidable.IncomingForm();
     var cat, filename;
+    var newImage = new Image();
+    var dateTime = new Date();
+
+
 
    // form.parse(req,);
 
@@ -132,19 +165,39 @@ app.post("/upload", function (req, res) {
         cat = fields.cat;
         console.log("cattype = " + fields.cat); 
         console.log("filename = " + fields.filename); 
+
+        newImage.directory = "./uploads";
+        newImage.filename = fields.filename;
+        newImage.category = fields.cat;
+        newImage.uploadBy = "G0dM0de";
+        newImage.uploadDate = dateTime;
     });
 
 
+
+
+
+
+
+    // Store image in dir /uploads/.
     form.on('fileBegin', function (name, file){
         file.path = __dirname + '/uploads/' + file.name;
     });
-
 
     form.on('file', function (name, file){
         console.log('Uploaded ' + file.name);
     });
 
     res.end("File is uploaded");
+
+    newImage.save(function(err, user){
+        if(err){
+            console.log('\n ... error saving image meta-data ...');
+        }else{
+            res.send(newImage);
+            console.log('\n data persisted . . .');
+        }
+    });
 
 
 });
