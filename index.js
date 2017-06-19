@@ -6,6 +6,7 @@ var express     = require('express'),
     mongoose    = require('mongoose');
     User        = require('./User.model');
     Image       = require('./Image.model');
+    fs          = require('fs');
 
 var app = express();
 
@@ -21,6 +22,17 @@ var listener = app.listen(3000, function(){
 });
 
 
+
+// todo:
+/*
+
+    1. implement user auth and session tracking.
+    2. <return user by username>
+    3. return images by user upload
+    4. return all images
+    5. 
+
+*/
 
 
 // -------------------- routes start here -----------------------------
@@ -174,28 +186,23 @@ app.post("/upload", function (req, res) {
     });
 
 
-
-
-
-
-
     // Store image in dir /uploads/.
     form.on('fileBegin', function (name, file){
-        file.path = __dirname + '/uploads/' + file.name;
+        file.path = __dirname + '/upload/uploads/' + file.name;
     });
 
     form.on('file', function (name, file){
         console.log('Uploaded ' + file.name);
     });
 
-    res.end("File is uploaded");
+    console.log("File is uploaded");
 
     newImage.save(function(err, user){
         if(err){
             console.log('\n ... error saving image meta-data ...');
         }else{
             res.send(newImage);
-            console.log('\n data persisted . . .');
+            console.log('\n image file stored and meta data persisted . . .');
         }
     });
 
@@ -233,6 +240,24 @@ app.post('/login',function(req,res){
 
 
 app.get('/hello',function(req,res){
+
+
+
+
+    // if (process.argv.length <= 2) {
+    // console.log("Usage: " + __filename + " path/to/directory");
+    // process.exit(-1);
+    // }
+ 
+    var path = process.argv[2];
+ 
+    fs.readdir('./uploads', function(err, items) {
+    console.log(items);
+ 
+    for (var i=0; i<items.length; i++) {
+        console.log(items[i]);
+    }
+    });
 
         //User.collection.drop();
       res.sendFile(__dirname + "/hello.html");
