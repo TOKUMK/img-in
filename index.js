@@ -11,15 +11,15 @@ var express     = require('express'),
 var app = express();
 
 var db = 'mongodb://localhost/example';
-
 mongoose.connect(db);
 
 app.use('/img', express.static(__dirname + '/img'));
 
-var listener = app.listen(3000, function(){
-    console.log('listening on port ' + listener.address().port);
 
-});
+
+
+
+
 
 
 
@@ -46,6 +46,25 @@ var listener = app.listen(3000, function(){
         Routes for user registration and user data.
 
 */
+app.get('/login',function(req,res){
+      res.sendFile(__dirname + "/login.html");
+});
+
+app.post('/login',function(req,res){
+
+    var form = new formidable.IncomingForm();
+    var username, password;
+
+    // form.parse(req,);
+
+    form.parse(req, function (req,fields, err){
+        username = fields.username;
+        password = fields.password;
+        console.log("username :: " + fields.username); 
+        console.log("password :: " + fields.password); 
+    });
+      res.end("logged in");
+});
 
 // return the view page for register
 app.get('/register',function(req,res){
@@ -137,102 +156,107 @@ app.get('/users', function(req,res){
 
 app.get('/gallery', function(req,res){
 
+    res.sendFile()
+
 });
 
 
 
+app.post("/upload", function (req, res) {
+    //console.log(req.body.user.name)
+
+    var form = new formidable.IncomingForm();
+    var cat, filename;
+
+    form.parse(req, function (req,fields, err){
+        filename = fields.filename;
+        cat = fields.cat;
+        console.log("upload :: cattype = " + fields.cat); 
+        console.log("upload :: filename = " + fields.filename); 
+    });
+
+    form.on('fileBegin', function (upload, file){
+        console.log("upload :: writing file to disk ...");
+        console.log("upload :: to " + __dirname + '/uploads/ file name -> ' + file.name);
+
+        file.path = __dirname + '/uploads/' + file.name;
+    });
+
+    form.on('file', function (name, file){
+           console.log('Uploaded ' + file.filename);
+    });
 
 
+    res.end("File is uploaded");
 
 
-/*
-
-        Route handling image upload and meta-data persistence.
-    
-*/
-
-
-
-
+});
 
 
 //app.use(formidable.parse());
 
 // Handle use case for file uploading.
 // TODO: Persist file meta-data.
-app.post("/upload", function (req, res) {
-    //console.log(req.body.user.name)
+// app.post("/upload", function (req, res) {
+//     //console.log(req.body.user.name)
 
-    var form = new formidable.IncomingForm();
-    var cat, filename;
-    var newImage = new Image();
-    var dateTime = new Date();
-
-
-
-   // form.parse(req,);
-
-    form.parse(req, function (req,fields, err){
-        filename = fields.filename;
-        cat = fields.cat;
-        console.log("cattype = " + fields.cat); 
-        console.log("filename = " + fields.filename); 
-
-        newImage.directory = "./uploads";
-        newImage.filename = fields.filename;
-        newImage.category = fields.cat;
-        newImage.uploadBy = "G0dM0de";
-        newImage.uploadDate = dateTime;
-    });
+//     var form = new formidable.IncomingForm();
+//     var cat, filename;
+//     var newImage = new Image();
+//     var dateTime = new Date();
 
 
-    // Store image in dir /uploads/.
-    form.on('fileBegin', function (name, file){
-        file.path = __dirname + '/upload/uploads/' + file.name;
-    });
 
-    form.on('file', function (name, file){
-        console.log('Uploaded ' + file.name);
-    });
+//    // form.parse(req,);
 
-    console.log("File is uploaded");
+//     form.parse(req, function (req,fields, err){
+//         filename = fields.filename;
+//         cat = fields.cat;
+//         console.log("cattype = " + fields.cat); 
+//         console.log("filename = " + fields.filename); 
 
-    newImage.save(function(err, user){
-        if(err){
-            console.log('\n ... error saving image meta-data ...');
-        }else{
-            res.send(newImage);
-            console.log('\n image file stored and meta data persisted . . .');
-        }
-    });
+//         newImage.directory = "./uploads";
+//         newImage.filename = fields.filename;
+//         newImage.category = fields.cat;
+//         newImage.uploadBy = "G0dM0de";
+//         newImage.uploadDate = dateTime;
+//     });
 
 
-});
+//     // Store image in dir /uploads/.
+//     form.on('fileBegin', function (name, file){
+//         file.path = __dirname + '/uploads/' + file.filename;
+//     });
+
+//     form.on('file', function (name, file){
+//         console.log('Uploaded ' + file.filename);
+//     });
+
+
+
+//     console.log("File is uploaded");
+
+//     // persist document
+//     newImage.save(function(err, user){
+//         if(err){
+//             console.log('\n ... error saving image meta-data ...');
+//         }else{
+            
+//             res.end("File is uploaded");
+//             res.send(newImage);
+//             console.log('\n image file stored and meta data persisted . . .');
+//         }
+//     });
+
+
+// });
 
 
 app.get('/',function(req,res){
       res.sendFile(__dirname + "/home.html");
 });
 
-app.get('/login',function(req,res){
-      res.sendFile(__dirname + "/login.html");
-});
 
-app.post('/login',function(req,res){
-
-    var form = new formidable.IncomingForm();
-    var username, password;
-
-    // form.parse(req,);
-
-    form.parse(req, function (req,fields, err){
-        username = fields.username;
-        password = fields.password;
-        console.log("cattype = " + fields.username); 
-        console.log("filename = " + fields.password); 
-    });
-      res.end("logged in");
-});
 
 
 
@@ -249,21 +273,30 @@ app.get('/hello',function(req,res){
     // process.exit(-1);
     // }
  
-    var path = process.argv[2];
- 
+    //var path = process.argv[2];
+    var paths = {};
+
     fs.readdir('./uploads', function(err, items) {
     console.log(items);
  
     for (var i=0; i<items.length; i++) {
+        paths[i] = items[i];
         console.log(items[i]);
     }
+        
+    res.json(paths);
+
     });
 
+
         //User.collection.drop();
-      res.sendFile(__dirname + "/hello.html");
+      //res.sendFile(__dirname + "/hello.html");
 });
 
 
 
 
 
+var listener = app.listen(3000, function(){
+    console.log('imgin:: listening on port ' + listener.address().port);
+});
